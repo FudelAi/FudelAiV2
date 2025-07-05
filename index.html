@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fudel AI Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+    #input { width: 80%; }
+    #send { width: 15%; }
+    .user { color: blue; }
+    .bot { color: green; }
+  </style>
+</head>
+<body>
+  <h1>🤖 Fudel AI Chatbot</h1>
+  <div id="chat"></div>
+  <input id="input" type="text" placeholder="Tulis pertanyaanmu..." />
+  <button id="send">Kirim</button>
+  <script>
+    const chat = document.getElementById('chat');
+    const input = document.getElementById('input');
+    const send = document.getElementById('send');
+
+    function addMessage(text, sender) {
+      const div = document.createElement('div');
+      div.className = sender;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    send.onclick = () => {
+      const userText = input.value;
+      if (!userText) return;
+      addMessage('Kamu: ' + userText, 'user');
+
+      // Contoh respon sederhana
+      let botReply = "Maaf, aku belum dihubungkan ke AI 🤖";
+      if (userText.toLowerCase().includes('halo')) {
+        botReply = "Halo juga! 👋 Apa kabar?";
+      }
+      if (userText.toLowerCase().includes('siapa kamu')) {
+        botReply = "Aku Fudel AI! 🤖";
+      }
+
+      addMessage(botReply, 'bot');
+      input.value = '';
+    };
+  </script>
+</body>
+</html>
